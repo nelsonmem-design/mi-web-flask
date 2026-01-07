@@ -1,3 +1,6 @@
+body {
+    background-color: red !important;
+}
 /* Reset básico */
 * {
     box-sizing: border-box;
@@ -111,5 +114,6 @@ table th {
         padding: 20px;
     }
 }
+
 
 
