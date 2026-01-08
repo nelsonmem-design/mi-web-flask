@@ -1,21 +1,21 @@
 ﻿from flask import Flask, render_template, request
-import sqlite3
+import psycopg2
 import os
 
 app = Flask(__name__)
 
 # =========================
-# Base de datos
+# Conexión PostgreSQL
 # =========================
 def conectar_db():
-    return sqlite3.connect("mensajes.db")
+    return psycopg2.connect(os.environ.get("DATABASE_URL"))
 
 def inicializar_db():
     conexion = conectar_db()
     cursor = conexion.cursor()
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS mensajes (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            id SERIAL PRIMARY KEY,
             nombre TEXT,
             correo TEXT,
             mensaje TEXT
@@ -24,7 +24,7 @@ def inicializar_db():
     conexion.commit()
     conexion.close()
 
-# Inicializar la base al arrancar
+# Crear tabla al arrancar la app
 inicializar_db()
 
 # =========================
@@ -44,7 +44,7 @@ def contacto():
         conexion = conectar_db()
         cursor = conexion.cursor()
         cursor.execute(
-            "INSERT INTO mensajes (nombre, correo, mensaje) VALUES (?, ?, ?)",
+            "INSERT INTO mensajes (nombre, correo, mensaje) VALUES (%s, %s, %s)",
             (nombre, correo, mensaje)
         )
         conexion.commit()
@@ -63,7 +63,7 @@ def admin():
     return render_template("admin.html", mensajes=mensajes)
 
 # =========================
-# Arranque
+# Arranque local
 # =========================
 if __name__ == "__main__":
     app.run(debug=True)
