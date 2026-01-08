@@ -5,12 +5,19 @@
     <title>{% block title %}Mi Web{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
+    <a href="/">Inicio</a>
+    <a href="/contacto">Contacto</a>
+    <a href="/admin">Admin</a>
+
+    <button id="darkToggle" style="float:right;">🌙</button>
 <body>
 
 <nav>
     <a href="/">Inicio</a>
     <a href="/contacto">Contacto</a>
     <a href="/admin">Admin</a>
+
+    <button id="darkToggle" style="float:right;">🌙</button>
 </nav>
 
 <div class="container">

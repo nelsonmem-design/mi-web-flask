@@ -2,6 +2,16 @@
    Reset y variables
 ========================= */
 :root {
+    /* =========================
+   Modo oscuro
+========================= */
+body.dark {
+    --bg: #0f172a;
+    --text: #e5e7eb;
+    --card: #020617;
+    --border: #1e293b;
+}
+
     --primary: #2563eb;
     --primary-dark: #1e40af;
     --bg: #f3f4f6;
@@ -167,4 +177,36 @@ table th {
     h1 {
         font-size: 24px;
     }
+}
+/* =========================
+   Animaciones
+========================= */
+@keyframes fadeSlide {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Aplica animación al contenido */
+.container {
+    animation: fadeSlide 0.6s ease-out;
+}
+
+/* Hover suave en links */
+nav a {
+    transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+nav a:hover {
+    transform: translateY(-1px);
+}
+
+/* Hover suave en filas de tabla */
+table tr:hover {
+    background-color: rgba(37, 99, 235, 0.05);
 }
