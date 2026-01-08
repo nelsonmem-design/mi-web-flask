@@ -5,6 +5,16 @@
 {% block content %}
 <h1>Formulario de contacto</h1>
 
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      <div class="alert success">
+        {{ message }}
+      </div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
 <form method="POST">
     <label>Nombre:</label><br>
     <input type="text" name="nombre" required><br><br>
