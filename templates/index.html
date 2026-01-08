@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Mi web Flask</title>
-</head>
-<body>
-    <h1>¡Flask funciona en Render!</h1>
-    <p>Si ves esto, el problema está resuelto.</p>
-</body>
-</html>
+{% extends "base.html" %}
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+<h1 style="color:red;">VERSION NUEVA CONFIRMADA</h1>
+<p>Si ves este texto en rojo, Render está actualizado.</p>
+{% endblock %}
