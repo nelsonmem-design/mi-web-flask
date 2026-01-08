@@ -1,9 +1,9 @@
-﻿from flask import Flask, render_template, request
+﻿from flask import Flask, render_template, request, redirect, url_for, flash
 import psycopg2
 import os
 
 app = Flask(__name__)
-
+app.secret_key = os.environ.get("SECRET_KEY", "dev-secret-key")
 # =========================
 # Conexión PostgreSQL
 # =========================
@@ -50,7 +50,11 @@ def contacto():
         conexion.commit()
         conexion.close()
 
+        flash("Mensaje enviado con éxito ✅", "success")
+        return redirect(url_for("contacto"))
+
     return render_template("contacto.html")
+
 
 @app.route("/admin")
 def admin():
